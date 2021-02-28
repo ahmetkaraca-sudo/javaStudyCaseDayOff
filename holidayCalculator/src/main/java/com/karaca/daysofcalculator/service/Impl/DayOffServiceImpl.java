@@ -68,9 +68,9 @@ public class DayOffServiceImpl implements DayOffService {
 
         double remainingDayOff = remainingDayOff(user.getId(), user.getStartDayOfwork());
         double requestedDayOff = calculateWorkingDay(dayOffRequest.getStartDate(), dayOffRequest.getEndDate());
-        if(requestedDayOff == 0) {
+        if (requestedDayOff == 0) {
             throw new InvalidRequestedDayOff();
-        }else if (remainingDayOff - requestedDayOff >= 0) {
+        } else if (remainingDayOff - requestedDayOff >= 0) {
             DayOff dayOff = new DayOff(user,
                     dayOffRequest.getStartDate(),
                     dayOffRequest.getEndDate(),

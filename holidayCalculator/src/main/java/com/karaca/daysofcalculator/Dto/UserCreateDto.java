@@ -2,7 +2,6 @@ package com.karaca.daysofcalculator.Dto;
 
 
 public class UserCreateDto {
-
     private String name;
     private String surname;
     private String identityId;

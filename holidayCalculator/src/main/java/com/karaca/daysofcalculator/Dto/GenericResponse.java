@@ -11,7 +11,7 @@ public class GenericResponse {
     private String message;
 
     public GenericResponse(HttpStatus status, String message) {
-        this.timestamp = Instant.now().toString();;
+        this.timestamp = Instant.now().toString();
         this.status = status.value();
         this.error = status.getReasonPhrase();
         this.message = message;

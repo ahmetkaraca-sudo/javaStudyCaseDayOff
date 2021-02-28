@@ -7,10 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 public class User implements UserDetails {
@@ -35,7 +33,7 @@ public class User implements UserDetails {
     }
 
     @OneToOne
-    private GrantedAuthroties grantedAuthroties;
+    private GrantedAuthorities grantedAuthorities;
 
     public User() {
     }
@@ -61,7 +59,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority(grantedAuthroties.getRole()));
+        return Arrays.asList(new SimpleGrantedAuthority(grantedAuthorities.getRole()));
     }
 
     @Override
@@ -102,12 +100,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public GrantedAuthroties getGrantedAuthroties() {
-        return grantedAuthroties;
+    public GrantedAuthorities getGrantedAuthroties() {
+        return grantedAuthorities;
     }
 
-    public void setGrantedAuthroties(GrantedAuthroties grantedAuthroties) {
-        this.grantedAuthroties = grantedAuthroties;
+    public void setGrantedAuthroties(GrantedAuthorities grantedAuthorities) {
+        this.grantedAuthorities = grantedAuthorities;
     }
 
     public Long getId() {

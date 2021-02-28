@@ -3,17 +3,16 @@ package com.karaca.daysofcalculator.entity;
 import javax.persistence.*;
 
 @Entity
-public class GrantedAuthroties {
+public class GrantedAuthorities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Enumerated(EnumType.STRING)
     private String role;
 
-    public GrantedAuthroties() {
+    public GrantedAuthorities() {
     }
 
-    public GrantedAuthroties(Long id, String role) {
+    public GrantedAuthorities(Long id, String role) {
         this.id = id;
         this.role = role;
     }

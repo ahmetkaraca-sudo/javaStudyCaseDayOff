@@ -10,7 +10,7 @@ public interface DayOffService {
 
     void offDayEntry(DayOffRequestDto dayOffRequest, String username);
 
-    void approveOffDay(DayOffApproveRequest dayOffAproveRequest, String username);
+    void approveOffDay(DayOffApproveRequest dayOffApproveRequest, String username);
 
     List<DayOffResponseDto> getAllOffDays(String username);
 }

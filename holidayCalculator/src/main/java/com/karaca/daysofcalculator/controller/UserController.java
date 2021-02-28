@@ -2,8 +2,6 @@ package com.karaca.daysofcalculator.controller;
 
 import com.karaca.daysofcalculator.Dto.UserCreateDto;
 import com.karaca.daysofcalculator.Dto.UserLoginDto;
-import com.karaca.daysofcalculator.entity.User;
-import com.karaca.daysofcalculator.repository.GrantedAuthrotiesRepository;
 import com.karaca.daysofcalculator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
-    @Autowired
     private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody UserCreateDto user){

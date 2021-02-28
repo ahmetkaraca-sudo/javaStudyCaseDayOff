@@ -1,12 +1,11 @@
 package com.karaca.daysofcalculator.service.Impl;
 
-import antlr.StringUtils;
 import com.karaca.daysofcalculator.Dto.UserCreateDto;
 import com.karaca.daysofcalculator.Dto.UserLoginDto;
-import com.karaca.daysofcalculator.entity.GrantedAuthroties;
+import com.karaca.daysofcalculator.entity.GrantedAuthorities;
 import com.karaca.daysofcalculator.entity.User;
 import com.karaca.daysofcalculator.exception.UserAlreadyExistsException;
-import com.karaca.daysofcalculator.repository.GrantedAuthrotiesRepository;
+import com.karaca.daysofcalculator.repository.GrantedAuthoritiesRepository;
 import com.karaca.daysofcalculator.repository.UserRepository;
 import com.karaca.daysofcalculator.security.ApplicationUserRole;
 import com.karaca.daysofcalculator.service.UserService;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKey;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,19 +29,19 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
-    private final GrantedAuthrotiesRepository grantedAuthrotiesRepository;
+    private final GrantedAuthoritiesRepository grantedAuthoritiesRepository;
     private final AuthenticationManager authenticationManager;
     private final SecretKey secretKey;
 
     public UserServiceImpl(UserRepository userRepository,
                            PasswordEncoder bCryptPasswordEncoder,
-                           GrantedAuthrotiesRepository grantedAuthrotiesRepository,
+                           GrantedAuthoritiesRepository grantedAuthoritiesRepository,
                            AuthenticationManager authenticationManager,
                            SecretKey secretKey
     ) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.grantedAuthrotiesRepository = grantedAuthrotiesRepository;
+        this.grantedAuthoritiesRepository = grantedAuthoritiesRepository;
         this.authenticationManager = authenticationManager;
         this.secretKey = secretKey;
     }
@@ -55,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
         User newUser = new User(user.getName(), user.getSurname(), user.getIdentityId(), user.getUsername());
 
-        GrantedAuthroties byRole = grantedAuthrotiesRepository.findByRole(ApplicationUserRole.USER.getRole());
+        GrantedAuthorities byRole = grantedAuthoritiesRepository.findByRole(ApplicationUserRole.USER.getRole());
         newUser.setGrantedAuthroties(byRole);
         newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(newUser);

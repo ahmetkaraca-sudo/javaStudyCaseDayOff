@@ -2,12 +2,9 @@ package com.karaca.daysofcalculator.entity;
 
 import com.karaca.daysofcalculator.enums.DayOffStatus;
 import com.sun.istack.Nullable;
-import org.springframework.data.domain.PageRequest;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class DayOff {

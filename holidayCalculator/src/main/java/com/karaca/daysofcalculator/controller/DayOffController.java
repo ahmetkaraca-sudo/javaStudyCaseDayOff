@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/dayOff")
 public class DayOffController {
-
     private final DayOffService dayOffService;
 
     public DayOffController(DayOffService dayOffService) {

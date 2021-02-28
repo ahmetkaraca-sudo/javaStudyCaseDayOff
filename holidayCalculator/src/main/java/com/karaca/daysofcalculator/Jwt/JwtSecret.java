@@ -8,7 +8,6 @@ import javax.crypto.SecretKey;
 
 @Configuration
 public class JwtSecret {
-
     private final JwtConfig jwtConfig;
 
     public JwtSecret(JwtConfig jwtConfig) {
@@ -16,7 +15,7 @@ public class JwtSecret {
     }
 
     @Bean
-    public SecretKey secretKey(){
+    public SecretKey secretKey() {
         return Keys.hmacShaKeyFor(jwtConfig.getSecretKey().getBytes());
     }
 }

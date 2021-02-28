@@ -93,6 +93,68 @@ Login ve JWT olan kodlara test yazılamadı. Sadece bir endpointe test yazıldı
 *İzin talepleri PENDING, DENIED ve ACCEPTED olarak üç farklı durumda tutuluyor.*
 
 *İzin talebi girildiğinde PENDING olarak tanımlanıyor. Sadece yönetici rolündeki kullanıcı, talebi onaylayabiliyor.*
+=======
+# javaStudyCaseDayOff
+
+Dizinde bulunan "run.sh" dosyasının yapıtığı işlemler;
+  Spring boot uygulamasını build eder.
+  Spring boot uygulamasının ürettiği jar dosyasından docker image oluşturur..
+  "docker-compose up -d" komutu ile de phpmyadmin, mysql ve localde oluşan image'ı ayağa kaldırır.
+
+Gerekli linkler:
+Uygulama swagger ui linki: http://localhost:8080/swagger-ui.html
+phpmyadmin linki: http://localhost:8888
+
+
+db kullanıcı adı: root
+db kullanıcı parola: root
+
+End-pointlerin kullanımı:
+  kullanıcı işlemleri için herhangi bir role ihtiyaç yoktur.
+
+  Öntanımlı kullanıcılar 
+   1) MANAGER: kullanıcı adı: ahmet ,parola: seyit
+   2) USER: kullanıcı adı: seyit ,parola: seyit
+
+  http://localhost:8080/swagger-ui.html#/user-controller/loginUsingPOST adresine gidilir.
+  USER rolune sahip kullanıcı adı ve parolası girilir ve token alınır.
+
+  Alınan token Day-Off-Controller (http://localhost:8080/swagger-ui.html#/day-off-controller)'daki endpointleri kullanabilmek için
+  kullanılır. Token bu endpointteki bir methodun en sağında bulunan KİLİT işaretine tıklanır ve "Value" ile belirtilen alana yazılır.
+  "Authorize" butonuna tıklandıktan sonra endpointlere yapılan istekler bu token ile gönderilir.
+
+  
+  izin talebi: (http://localhost:8080/swagger-ui.html#/day-off-controller/requestDayOffUsingPOST)
+  request methodu ile izin talebi açılır. İzin başlangıç ve bitiş tarihi belirtilir. Formatı "yyyy-mm-dd" şeklinde olmalıdır.
+
+
+  izin onayı: (http://localhost:8080/swagger-ui.html#/day-off-controller/approveDayOffUsingPOST)
+  approve methodu ile açılmış talepler onaylanır. Talep id'si ve bir durum ("ACCEPTED", "PENDING" , "DENIED") girilir.
+  Sadece MANAGER rolune sahip kullanıcılar bu endpointe istek atabilir.
+
+  
+  İzin taleplerinin görüntülenmesi: (http://localhost:8080/swagger-ui.html#/day-off-controller/getAllDayOffUsingGET)
+  Açılmış izin taleplerini durumları ile görüntüler.
+
+
+Kurallar
+- Hafta sonu (Cumartesi, Pazar) ve resmi tatil günleri izin süresinden sayılmaz.
+  2020 ve 2021 resmi tatil günleri veritabanında tutuldu. Resmi tatil günleri ve haftasonları izin günlerine eklenmedi.
+- Yeni işe başlayan kişiler avans olarak 5 iş günü kadar izin kullanabilir. Bu uygulama sadece ilk yıl için
+geçerlidir
+  Geçerli tabloya uygun izin günleri tanımlandı. İşe yeni başlayan çalışanın ilk yılı içerisinde 5 gün avans tanımlandı.
+  Çalışılmaya başlandığı tarihten itibaren yıllık olarak izinler tanımlandı.
+  Bir önceki yılın izni yeni yıla devredilmedi.
+- İleri tarihli bir izin talebi yapıldığında, yapılan gün sayısı çalışanın hak ettiği izin gün sayısından
+düşer.
+  izinler sadece izin alınacak günden sonraya girilebiliyor. Geçmişe dönük izin girilemiyor.
+- Çalışan izin girişi yaparken, kalan izin gün sayısından fazla izin talep edemez.
+  Çalıştığı zaman süresinde tanımlanan izin süresinden fazlasını talep edemiyor.
+- İzin talepleri yaratıldığı zaman “Onay Bekleniyor” statüsünde oluşur, yönetici onayından geçtikten
+sonra “Onaylandı” veya “Reddedildi” statülerine düşer.
+  İzin talepleri PENDING, DENIED ve ACCEPTED olarak üç farklı durumda tutuluyor.
+  İzin talebi girildiğinde PENDING olarak tanımlanıyor. Sadece yönetici rolündeki kullanıcı, talebi onaylayabiliyor.
+
 
 
 

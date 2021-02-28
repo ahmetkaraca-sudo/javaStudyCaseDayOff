@@ -1,7 +1,6 @@
 package com.karaca.daysofcalculator.Dto;
 
 public class DayOffApproveRequest {
-
     private String approve;
     private Long dayOfId;
 

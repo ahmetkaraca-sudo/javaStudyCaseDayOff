@@ -15,11 +15,12 @@ import com.karaca.daysofcalculator.service.Impl.DayOffServiceImpl;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class DayOffServiceImplTest {
 
     @Mock
@@ -90,10 +91,10 @@ class DayOffServiceImplTest {
     void test_getAllOffDays() {
         String username = "username";
         String s = "1,1.0-2,0.5-3,1.0-4,0.5";
-        User user = new User("test", "test", "test" , "test");
-        DayOff dayOff1 = new DayOff(null,LocalDate.now(),null,DayOffStatus.ACCEPTED,0.0,s,null);
-        DayOff dayOff2 = new DayOff(null,LocalDate.now(),null,DayOffStatus.ACCEPTED,0.0,"1,1.0-2,0.5",null);
-        DayOff dayOff3 = new DayOff(null,LocalDate.now(),null,DayOffStatus.PENDING,0.0,"1,1.0",null);
+        User user = new User("test", "test", "test", "test");
+        DayOff dayOff1 = new DayOff(null, LocalDate.now(), null, DayOffStatus.ACCEPTED, 0.0, s, null);
+        DayOff dayOff2 = new DayOff(null, LocalDate.now(), null, DayOffStatus.ACCEPTED, 0.0, "1,1.0-2,0.5", null);
+        DayOff dayOff3 = new DayOff(null, LocalDate.now(), null, DayOffStatus.PENDING, 0.0, "1,1.0", null);
 
         Mockito.when(userRepository.findByUsername(username)).thenReturn(Optional.of(user));
         Mockito.when(dayOffRepository.findAllByUser(user)).thenReturn(Arrays.asList(dayOff1, dayOff2, dayOff3));

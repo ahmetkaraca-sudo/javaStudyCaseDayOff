@@ -1,6 +1,5 @@
 package com.karaca.daysofcalculator.Jwt;
 
-
 import com.google.common.base.Strings;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -23,7 +22,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JwtTokenVerifier extends OncePerRequestFilter {
-
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
 
@@ -38,7 +36,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 
-        if(Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())){
+        if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -69,11 +67,11 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
                     simpleGrantedAuthorities
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        }catch (JwtException e){
+        } catch (JwtException e) {
             throw new IllegalStateException("Token cannot be trusted");
 
         }
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }
 

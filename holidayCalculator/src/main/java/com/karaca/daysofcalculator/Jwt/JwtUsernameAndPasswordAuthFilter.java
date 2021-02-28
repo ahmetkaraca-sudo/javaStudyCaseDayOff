@@ -1,7 +1,6 @@
 package com.karaca.daysofcalculator.Jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.karaca.daysofcalculator.Dto.UserLoginDto;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +18,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class JwtUsernameAndPasswordAuthFilter extends UsernamePasswordAuthenticationFilter {
-
     private final JwtConfig jwtConfig;
     private final SecretKey secretKey;
     private final AuthenticationManager authenticationManager;
