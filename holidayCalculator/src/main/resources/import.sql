@@ -1,10 +1,10 @@
-insert into granted_authroties(role) values ('ROLE_USER');
-insert into granted_authroties(role) values ('ROLE_MANAGER');
+insert into granted_authorities(role) values ('ROLE_USER');
+insert into granted_authorities(role) values ('ROLE_MANAGER');
 
 
 -- User
-insert into user (identity_id,username ,name ,surname, start_day_ofwork , password, granted_authroties_id	) values ('317','seyit','seyit', 'karaca',  '2020-04-04','$2a$10$kGaDr.oyCBc8W5cF3/uBXei8BjMc6uDM2CUP/XyG7.4gPYrrmpzfe', 1);
-insert into user (identity_id,username ,name ,surname, start_day_ofwork , password, granted_authroties_id	) values ('318','ahmet','seyit', 'karaca',  '2020-04-04','$2a$10$kGaDr.oyCBc8W5cF3/uBXei8BjMc6uDM2CUP/XyG7.4gPYrrmpzfe', 2);
+insert into user (identity_id,username ,name ,surname, start_day_ofwork , password, granted_authorities_id) values ('317','seyit','seyit', 'karaca',  '2020-04-04','$2a$10$kGaDr.oyCBc8W5cF3/uBXei8BjMc6uDM2CUP/XyG7.4gPYrrmpzfe', 1);
+insert into user (identity_id,username ,name ,surname, start_day_ofwork , password, granted_authorities_id) values ('318','ahmet','seyit', 'karaca',  '2020-04-04','$2a$10$kGaDr.oyCBc8W5cF3/uBXei8BjMc6uDM2CUP/XyG7.4gPYrrmpzfe', 2);
 
 
 

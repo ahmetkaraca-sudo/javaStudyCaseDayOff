@@ -10,7 +10,7 @@ public enum DayOffStatus {
     ACCEPTED("accepted"),
     DENIED("denied");
 
-    private static final ImmutableMap<String, DayOffStatus> reverseLookup =
+    private static ImmutableMap<String, DayOffStatus> reverseLookup =
             Maps.uniqueIndex(Arrays.asList(DayOffStatus.values()), DayOffStatus::getValue);
 
     private String status;

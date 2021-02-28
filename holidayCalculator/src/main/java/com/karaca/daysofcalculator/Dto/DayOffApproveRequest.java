@@ -10,7 +10,7 @@ public class DayOffApproveRequest {
     }
 
     public String getApprove() {
-        return approve;
+        return approve.toLowerCase();
     }
 
     public void setApprove(String approve) {
